@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <title>SMEarnBDbot</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:#fff0d4;color:#222}
+    .wrap{max-width:520px;margin:auto;padding:18px 14px 90px}
+    .hero{background:linear-gradient(135deg,#ffad00,#ff7b00);border-radius:28px;padding:22px;color:#fff;box-shadow:0 8px 24px #d98b332e}
+    .brand{font-size:28px;font-weight:800}.sub{margin-top:5px;font-size:17px}
+    .balance{margin-top:20px;background:#ffffff24;border-radius:20px;padding:18px}
+    .label{font-size:15px}.money{font-size:38px;font-weight:800;margin-top:6px}
+    .welcome{margin-top:8px;font-size:14px}
+    .rule{margin:18px 0;background:#2fae43;color:#fff;border-radius:22px;padding:18px;font-weight:700}
+    .rule small{display:block;font-weight:400;margin-top:5px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+    .card{background:#fff;border-radius:22px;padding:22px 12px;text-align:center;box-shadow:0 6px 18px #0000000d}
+    .icon{font-size:36px}.title{font-size:19px;margin-top:8px}.value{font-size:26px;font-weight:800;margin-top:8px}
+    .muted{color:#888;font-size:14px}
+    .nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-radius:24px 24px 0 0;box-shadow:0 -4px 18px #00000018;display:flex;justify-content:space-around;padding:10px 6px calc(10px + env(safe-area-inset-bottom));max-width:520px;margin:auto}
+    .nav button{border:0;background:none;font-size:13px;color:#888}.nav .active{color:#ff8a00;font-weight:700}.nav span{display:block;font-size:25px}
+    .demo{margin-top:18px;text-align:center;color:#777;font-size:12px}
+    button.action{width:100%;border:0;border-radius:18px;padding:15px;background:#18b85a;color:#fff;font-size:18px;font-weight:700;margin-top:12px}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div class="brand">🎃 SMEarnBDbot</div>
+    <div class="sub">আয় করুন সহজে</div>
+    <div class="balance">
+      <div class="label">আপনার ব্যালেন্স</div>
+      <div class="money" id="balance">৳ 0.00</div>
+      <div class="welcome">স্বাগতম, <span id="name">User</span></div>
+    </div>
+  </section>
+
+  <div class="rule">📖 কাজ করার নিয়ম
+    <small>নতুন ইউজার? এখানে ক্লিক করে নিয়মগুলো দেখুন</small>
+  </div>
+
+  <div class="card" style="margin-top:14px;text-align:left">
+    <div class="title">🔗 আপনার Referral Link</div>
+    <div style="margin-top:10px;background:#f6f6f6;border-radius:12px;padding:12px;word-break:break-all;font-size:13px" id="refLink">https://t.me/SMEarnBDbot?start=demo</div>
+    <button class="action" style="margin-top:10px" onclick="copyRef()">📋 লিংক কপি করুন</button>
+    <button class="action" style="background:#ff8a00;margin-top:8px" onclick="shareRef()">📤 বন্ধুদের শেয়ার করুন</button>
+    <div class="muted" style="margin-top:9px">রেফারেল বোনাসের নিয়ম ও পরিমাণ পরে Admin Panel থেকে সেট করা যাবে।</div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="icon">👁️</div>
+      <div class="title">এই ঘণ্টায় অ্যাড</div>
+      <div class="value"><span id="ads">0</span>/10</div>
+      <div class="muted">ডেমো মোড</div>
+    </div>
+    <div class="card">
+      <div class="icon">👥</div>
+      <div class="title">রেফারেল</div>
+      <div class="value" id="refs">0</div>
+      <div class="muted">বন্ধু আমন্ত্রণ</div>
+    </div>
+  </div>
+
+  <button class="action" onclick="demoAd()">📺 ডেমো অ্যাড দেখুন</button>
+  <div class="demo">Step 2 prototype: Referral link তৈরি ও share করা যাচ্ছে। আসল referral bonus/database পরে server-side যোগ হবে।</div>
+</div>
+
+<nav class="nav">
+  <button class="active"><span>🏠</span>হোম</button>
+  <button><span>☷</span>টাস্ক</button>
+  <button><span>💳</span>উইথড্র</button>
+  <button><span>👤</span>প্রোফাইল</button>
+</nav>
+
+<script>
+  const tg = window.Telegram?.WebApp;
+  if (tg) {
+    tg.ready();
+    tg.expand();
+    const u = tg.initDataUnsafe?.user;
+    if (u) document.getElementById("name").textContent = u.first_name || "User";
+  }
+
+  const botUsername = "SMEarnBDbot";
+  const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
+  const referralId = tgUser?.id ? String(tgUser.id) : "demo";
+  const refLink = `https://t.me/${botUsername}?start=ref_${referralId}`;
+  document.getElementById("refLink").textContent = refLink;
+
+  async function copyRef(){
+    try {
+      await navigator.clipboard.writeText(refLink);
+      alert("Referral link কপি হয়েছে।");
+    } catch(e) {
+      alert(refLink);
+    }
+  }
+
+  function shareRef(){
+    const text = encodeURIComponent("SMEarnBDbot-এ যোগ দিন!");
+    const url = encodeURIComponent(refLink);
+    const shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
+    if (tg) tg.openTelegramLink(shareUrl);
+    else window.open(shareUrl, "_blank");
+  }
+
+  let ads = 0;
+  function demoAd(){
+    if(ads >= 10){ alert("আজকের ডেমো সীমা শেষ।"); return; }
+    ads++;
+    document.getElementById("ads").textContent = ads;
+    alert("ডেমো অ্যাড সম্পন্ন। আসল rewarded-ad ও server verification পরে যোগ হবে।");
+  }
+</script>
+</body>
+</html>
