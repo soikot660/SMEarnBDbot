@@ -4,69 +4,135 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SMEarnBDbot</title>
+
   <style>
-    * { box-sizing: border-box; }
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #172554);
-      color: white;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
       min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       padding: 20px;
     }
-    .card {
+
+    .container {
       width: 100%;
       max-width: 430px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 24px;
+      background: white;
+      border-radius: 20px;
       padding: 30px 22px;
       text-align: center;
-      box-shadow: 0 15px 40px rgba(0,0,0,.3);
-      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     }
+
     .logo {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 16px;
+      width: 85px;
+      height: 85px;
+      margin: auto;
       border-radius: 50%;
+      background: #2563eb;
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #22c55e;
-      font-size: 25px;
+      font-size: 22px;
       font-weight: bold;
     }
-    h1 { margin: 8px 0; font-size: 30px; }
-    p { color: #dbeafe; line-height: 1.6; }
+
+    h1 {
+      margin-top: 18px;
+      color: #111827;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      color: #6b7280;
+    }
+
+    .card {
+      margin-top: 25px;
+      padding: 20px;
+      background: #f3f4f6;
+      border-radius: 15px;
+    }
+
+    .card h2 {
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #4b5563;
+      line-height: 1.6;
+    }
+
     .btn {
       display: block;
-      width: 100%;
-      margin-top: 18px;
+      margin-top: 20px;
       padding: 14px;
-      border: 0;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
       border-radius: 12px;
-      background: #22c55e;
-      color: #062e16;
       font-size: 17px;
       font-weight: bold;
-      text-decoration: none;
-      cursor: pointer;
     }
-    .btn:hover { opacity: .9; }
-    .note { font-size: 13px; margin-top: 18px; color: #bfdbfe; }
+
+    .btn:hover {
+      background: #1d4ed8;
+    }
+
+    .note {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #6b7280;
+    }
   </style>
 </head>
+
 <body>
-  <div class="card">
-    <div class="logo">SM</div>
+
+  <div class="container">
+
+    <div class="logo">
+      SMEarn
+    </div>
+
     <h1>SMEarnBDbot</h1>
-    <p>স্বাগতম! আমাদের Telegram bot-এর মাধ্যমে বিভিন্ন earning feature ব্যবহার করতে পারবেন।</p>
-    <a class="btn" href="https://t.me/SMEarnBDbot" target="_blank">Telegram Bot খুলুন</a>
-    <div class="note">© 2026 SMEarnBDbot</div>
+
+    <p class="subtitle">
+      Telegram Referral Platform
+    </p>
+
+    <div class="card">
+      <h2>বন্ধুদের Invite করুন</h2>
+
+      <p>
+        আপনার Referral Link ব্যবহার করে বন্ধুদের যুক্ত করুন।
+        আপনার অ্যাকাউন্টে প্রযোজ্য রেফারেল সুবিধা থাকলে তা
+        প্ল্যাটফর্মের নিয়ম অনুযায়ী গণনা হবে।
+      </p>
+
+      <a
+        class="btn"
+        href="https://t.me/SMEarnBDbot"
+        target="_blank">
+        🚀 Telegram Bot খুলুন
+      </a>
+    </div>
+
+    <p class="note">
+      ব্যবহার করার আগে প্ল্যাটফর্মের নিয়ম ও শর্তগুলো পড়ে নিন।
+    </p>
+
   </div>
+
 </body>
 </html>
