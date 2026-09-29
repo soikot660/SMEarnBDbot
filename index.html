@@ -39,7 +39,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 21px;
+      font-size: 22px;
       font-weight: bold;
     }
 
@@ -70,61 +70,9 @@
       line-height: 1.6;
     }
 
-    .ref-box {
-      margin-top: 18px;
-      padding: 14px;
-      background: white;
-      border-radius: 12px;
-      border: 1px solid #d1d5db;
-    }
-
-    .ref-title {
-      font-size: 14px;
-      color: #6b7280;
-      margin-bottom: 8px;
-    }
-
-    #refLink {
-      width: 100%;
-      padding: 11px;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      font-size: 13px;
-      text-align: center;
-      color: #111827;
-      background: #f9fafb;
-    }
-
-    .copy-btn {
-      width: 100%;
-      margin-top: 10px;
-      padding: 12px;
-      border: none;
-      border-radius: 9px;
-      background: #16a34a;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .copy-btn:hover {
-      background: #15803d;
-    }
-
-    .count {
-      margin-top: 15px;
-      padding: 13px;
-      background: #dbeafe;
-      border-radius: 10px;
-      color: #1e40af;
-      font-size: 16px;
-      font-weight: bold;
-    }
-
     .btn {
       display: block;
-      margin-top: 18px;
+      margin-top: 20px;
       padding: 14px;
       background: #2563eb;
       color: white;
@@ -142,7 +90,6 @@
       margin-top: 18px;
       font-size: 12px;
       color: #6b7280;
-      line-height: 1.5;
     }
   </style></head><body>  <div class="container"><div class="logo">
   SMEarn
@@ -156,37 +103,13 @@
 
 <div class="card">
 
-  <h2>🎁 বন্ধুদের Invite করুন</h2>
+  <h2>বন্ধুদের Invite করুন</h2>
 
   <p>
-    আপনার Referral Link বন্ধুদের সাথে শেয়ার করুন।
-    বন্ধু আপনার লিংক ব্যবহার করে বটে যোগ দিলে
-    Referral সুবিধা প্রযোজ্য নিয়ম অনুযায়ী গণনা হবে।
+    আপনার Referral Link ব্যবহার করে বন্ধুদের যুক্ত করুন।
+    আপনার অ্যাকাউন্টে প্রযোজ্য রেফারেল সুবিধা থাকলে তা
+    প্ল্যাটফর্মের নিয়ম অনুযায়ী গণনা হবে।
   </p>
-
-  <div class="ref-box">
-
-    <div class="ref-title">
-      🔗 আপনার Referral Link
-    </div>
-
-    <input
-      type="text"
-      id="refLink"
-      readonly
-      value="Referral Link তৈরি হচ্ছে...">
-
-    <button
-      class="copy-btn"
-      onclick="copyReferral()">
-      📋 Link Copy করুন
-    </button>
-
-    <div class="count">
-      👥 Referral: <span id="refCount">0</span> জন
-    </div>
-
-  </div>
 
   <a
     class="btn"
@@ -201,60 +124,5 @@
   ব্যবহার করার আগে প্ল্যাটফর্মের নিয়ম ও শর্তগুলো পড়ে নিন।
 </p>
 
-  </div>  <script>
-
-    // Telegram start parameter থেকে Referral ID নেওয়া
-    const params = new URLSearchParams(window.location.search);
-    const refId = params.get("ref");
-
-    let referralLink;
-
-    if (refId) {
-      referralLink =
-        "https://t.me/SMEarnBDbot?start=ref_" + refId;
-    } else {
-      referralLink =
-        "https://t.me/SMEarnBDbot";
-    }
-
-    document.getElementById("refLink").value = referralLink;
-
-    // Demo referral count
-    // আসল count পরে Bot/Database থেকে নেওয়া হবে
-    let count = localStorage.getItem("referralCount");
-
-    if (!count) {
-      count = 0;
-      localStorage.setItem("referralCount", count);
-    }
-
-    document.getElementById("refCount").innerText = count;
-
-    // Copy button
-    function copyReferral() {
-
-      const link =
-        document.getElementById("refLink").value;
-
-      navigator.clipboard.writeText(link)
-        .then(function() {
-
-          const button =
-            document.querySelector(".copy-btn");
-
-          button.innerText = "✅ Link Copy হয়েছে!";
-
-          setTimeout(function() {
-            button.innerText = "📋 Link Copy করুন";
-          }, 2000);
-
-        })
-        .catch(function() {
-
-          alert("Link Copy করা যায়নি। Link টি ধরে Copy করুন।");
-
-        });
-    }
-
-  </script></body>
+  </div></body>
 </html>
