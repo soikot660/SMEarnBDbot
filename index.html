@@ -1,128 +1,112 @@
-<!DOCTYPE html><html lang="bn">
+<!DOCTYPE html>
+<html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SMEarnBDbot</title>  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>SMEarnBDbot</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:#fff1d7;color:#222}
+    .wrap{max-width:680px;margin:auto;padding:16px}
+    .hero{background:linear-gradient(135deg,#ffad0a,#ff7a00);color:#fff;border-radius:30px;padding:28px 22px;box-shadow:0 8px 24px #0002}
+    h1{margin:0;font-size:32px}.sub{font-size:19px;margin-top:10px}
+    .balance{margin-top:24px;background:#ffffff2b;border-radius:24px;padding:20px}
+    .label{font-size:18px}.money{font-size:42px;font-weight:800;margin:6px 0 10px}
+    .welcome{font-size:17px}
+    .card{background:#fff;border-radius:24px;padding:20px;margin-top:16px;box-shadow:0 5px 18px #0001}
+    .green{background:#24b83f;color:#fff}.title{font-size:23px;font-weight:800}.small{font-size:16px;margin-top:8px;line-height:1.5}
+    .ref{background:#f4f4f4;border-radius:16px;padding:15px;word-break:break-all;margin-top:12px}
+    button{border:0;border-radius:18px;padding:15px 18px;font-size:18px;font-weight:700;width:100%;margin-top:12px;cursor:pointer}
+    .copy{background:#16b85a;color:#fff}.info{font-size:15px;color:#666;line-height:1.5}
+    nav{position:sticky;bottom:0;background:#fff;border-radius:22px;margin-top:18px;padding:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;box-shadow:0 -4px 18px #0002}
+    nav button{background:transparent;color:#555;font-size:14px;padding:8px 3px;margin:0}.icon{display:block;font-size:24px}
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <h1>🎃 SMEarnBDbot</h1>
+    <div class="sub">আয় করুন সহজে</div>
+    <div class="balance">
+      <div class="label">আপনার ব্যালেন্স</div>
+      <div class="money">৳ <span id="balance">0.00</span></div>
+      <div class="welcome">স্বাগতম, <span id="name">User</span></div>
+    </div>
+  </section>
 
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e3a8a);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
+  <section class="card green" onclick="showRules()">
+    <div class="title">📖 কাজ করার নিয়ম</div>
+    <div class="small">নতুন ইউজার? এখানে ক্লিক করে নিয়মগুলো দেখুন</div>
+  </section>
 
-    .container {
-      width: 100%;
-      max-width: 430px;
-      background: white;
-      border-radius: 20px;
-      padding: 30px 22px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    }
+  <section class="card">
+    <div class="title">🔗 আপনার Referral Link</div>
+    <div class="ref" id="refLink">লোড হচ্ছে...</div>
+    <button class="copy" onclick="copyReferral()">📋 লিংক কপি করুন</button>
+  </section>
 
-    .logo {
-      width: 85px;
-      height: 85px;
-      margin: auto;
-      border-radius: 50%;
-      background: #2563eb;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      font-weight: bold;
-    }
+  <section class="card">
+    <div class="title">👤 Telegram তথ্য</div>
+    <p class="info">নাম: <b id="fullName">User</b></p>
+    <p class="info">Username: <b id="username">নেই</b></p>
+    <p class="info">User ID: <b id="userId">নেই</b></p>
+    <p class="info">Referral: <b id="startParam">নেই</b></p>
+  </section>
 
-    h1 {
-      margin-top: 18px;
-      color: #111827;
-    }
+  <section id="rules" class="card hidden">
+    <div class="title">📖 কাজ করার নিয়ম</div>
+    <p class="info">১. Telegram অ্যাকাউন্ট দিয়ে অ্যাপ খুলুন।<br>
+    ২. বৈধ কাজ সম্পন্ন করলে সিস্টেমে আয় যোগ হবে।<br>
+    ৩. Referral লিংক শেয়ার করলে ভবিষ্যতে referral সুবিধা যোগ করা যাবে।<br>
+    ৪. Withdraw চালু করার আগে পেমেন্টের নিয়ম ও ন্যূনতম সীমা নির্ধারণ করতে হবে।</p>
+  </section>
 
-    .subtitle {
-      margin-top: 8px;
-      color: #6b7280;
-    }
-
-    .card {
-      margin-top: 25px;
-      padding: 20px;
-      background: #f3f4f6;
-      border-radius: 15px;
-    }
-
-    .card h2 {
-      color: #111827;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      color: #4b5563;
-      line-height: 1.6;
-    }
-
-    .btn {
-      display: block;
-      margin-top: 20px;
-      padding: 14px;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      border-radius: 12px;
-      font-size: 17px;
-      font-weight: bold;
-    }
-
-    .btn:hover {
-      background: #1d4ed8;
-    }
-
-    .note {
-      margin-top: 18px;
-      font-size: 12px;
-      color: #6b7280;
-    }
-  </style></head><body>  <div class="container"><div class="logo">
-  SMEarn
+  <nav>
+    <button onclick="topPage()"><span class="icon">🏠</span>হোম</button>
+    <button onclick="showRules()"><span class="icon">☷</span>টাস্ক</button>
+    <button onclick="copyReferral()"><span class="icon">🔗</span>রেফার</button>
+    <button onclick="alert('Withdraw সিস্টেম পরের ধাপে সংযুক্ত করা হবে।')"><span class="icon">💳</span>উইথড্র</button>
+  </nav>
 </div>
 
-<h1>SMEarnBDbot</h1>
+<script>
+const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+if(tg){ tg.ready(); tg.expand(); }
 
-<p class="subtitle">
-  Telegram Referral Platform
-</p>
+const user = tg?.initDataUnsafe?.user || {};
+const startParam = tg?.initDataUnsafe?.start_param || "";
+const userId = user.id ? String(user.id) : "";
+const first = user.first_name || "";
+const last = user.last_name || "";
+const fullName = (first + " " + last).trim() || "User";
+const username = user.username ? "@" + user.username : "নেই";
 
-<div class="card">
+document.getElementById("name").textContent = first || "User";
+document.getElementById("fullName").textContent = fullName;
+document.getElementById("username").textContent = username;
+document.getElementById("userId").textContent = userId || "Telegram থেকে খুলুন";
+document.getElementById("startParam").textContent = startParam || "নেই";
 
-  <h2>বন্ধুদের Invite করুন</h2>
+const botUsername = "SMEarnBDbot";
+const referralCode = userId || "demo";
+const referralLink = `https://t.me/${botUsername}?start=ref_${referralCode}`;
+document.getElementById("refLink").textContent = referralLink;
 
-  <p>
-    আপনার Referral Link ব্যবহার করে বন্ধুদের যুক্ত করুন।
-    আপনার অ্যাকাউন্টে প্রযোজ্য রেফারেল সুবিধা থাকলে তা
-    প্ল্যাটফর্মের নিয়ম অনুযায়ী গণনা হবে।
-  </p>
+const key = "smearn_balance_" + (userId || "demo");
+document.getElementById("balance").textContent = (Number(localStorage.getItem(key) || 0)).toFixed(2);
 
-  <a
-    class="btn"
-    href="https://t.me/SMEarnBDbot"
-    target="_blank">
-    🚀 Telegram Bot খুলুন
-  </a>
-
-</div>
-
-<p class="note">
-  ব্যবহার করার আগে প্ল্যাটফর্মের নিয়ম ও শর্তগুলো পড়ে নিন।
-</p>
-
-  </div></body>
+function copyReferral(){
+  navigator.clipboard?.writeText(referralLink).then(()=>{
+    alert("Referral link কপি হয়েছে ✅");
+  }).catch(()=>alert(referralLink));
+}
+function showRules(){
+  document.getElementById("rules").classList.remove("hidden");
+  document.getElementById("rules").scrollIntoView({behavior:"smooth"});
+}
+function topPage(){ window.scrollTo({top:0,behavior:"smooth"}); }
+</script>
+</body>
 </html>
