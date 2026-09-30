@@ -1,23 +1,26 @@
 <!doctype html>
-
 <html lang="bn">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-  <title>SMEarnBDbot</title>  <script src="https://telegram.org/js/telegram-web-app.js"></script>  <style>
+  <title>SMEarnBDbot</title>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <style>
     *{box-sizing:border-box}
 
     body{
       margin:0;
       font-family:Arial,"Noto Sans Bengali",sans-serif;
       background:#fff0d4;
-      color:#222
+      color:#222;
     }
 
     .wrap{
       max-width:520px;
       margin:auto;
-      padding:18px 14px 100px
+      padding:18px 14px 100px;
     }
 
     .hero{
@@ -25,39 +28,39 @@
       border-radius:28px;
       padding:22px;
       color:#fff;
-      box-shadow:0 8px 24px #d98b332e
+      box-shadow:0 8px 24px #d98b332e;
     }
 
     .brand{
       font-size:28px;
-      font-weight:800
+      font-weight:800;
     }
 
     .sub{
       margin-top:5px;
-      font-size:17px
+      font-size:17px;
     }
 
     .balance{
       margin-top:20px;
       background:#ffffff24;
       border-radius:20px;
-      padding:18px
+      padding:18px;
     }
 
     .label{
-      font-size:15px
+      font-size:15px;
     }
 
     .money{
       font-size:38px;
       font-weight:800;
-      margin-top:6px
+      margin-top:6px;
     }
 
     .welcome{
       margin-top:8px;
-      font-size:14px
+      font-size:14px;
     }
 
     .rule{
@@ -67,20 +70,20 @@
       border-radius:22px;
       padding:18px;
       font-weight:700;
-      cursor:pointer
+      cursor:pointer;
     }
 
     .rule small{
       display:block;
       font-weight:400;
-      margin-top:5px
+      margin-top:5px;
     }
 
     .grid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:14px;
-      margin-top:14px
+      margin-top:14px;
     }
 
     .card{
@@ -88,27 +91,27 @@
       border-radius:22px;
       padding:22px 12px;
       text-align:center;
-      box-shadow:0 6px 18px #0000000d
+      box-shadow:0 6px 18px #0000000d;
     }
 
     .icon{
-      font-size:36px
+      font-size:36px;
     }
 
     .title{
       font-size:19px;
-      margin-top:8px
+      margin-top:8px;
     }
 
     .value{
       font-size:26px;
       font-weight:800;
-      margin-top:8px
+      margin-top:8px;
     }
 
     .muted{
       color:#888;
-      font-size:14px
+      font-size:14px;
     }
 
     .ref{
@@ -116,7 +119,7 @@
       background:#fff;
       border-radius:22px;
       padding:20px;
-      box-shadow:0 6px 18px #0000000d
+      box-shadow:0 6px 18px #0000000d;
     }
 
     .refLink{
@@ -125,7 +128,7 @@
       border-radius:12px;
       padding:12px;
       word-break:break-all;
-      font-size:13px
+      font-size:13px;
     }
 
     .action{
@@ -138,15 +141,15 @@
       font-size:18px;
       font-weight:700;
       margin-top:12px;
-      cursor:pointer
+      cursor:pointer;
     }
 
     .orange{
-      background:#ff8a00
+      background:#ff8a00;
     }
 
     .blue{
-      background:#2563eb
+      background:#2563eb;
     }
 
     .nav{
@@ -162,7 +165,7 @@
       padding:10px 6px calc(10px + env(safe-area-inset-bottom));
       max-width:520px;
       margin:auto;
-      z-index:10
+      z-index:10;
     }
 
     .nav button{
@@ -170,24 +173,24 @@
       background:none;
       font-size:13px;
       color:#888;
-      cursor:pointer
+      cursor:pointer;
     }
 
     .nav .active{
       color:#ff8a00;
-      font-weight:700
+      font-weight:700;
     }
 
     .nav span{
       display:block;
-      font-size:25px
+      font-size:25px;
     }
 
     .demo{
       margin-top:18px;
       text-align:center;
       color:#777;
-      font-size:12px
+      font-size:12px;
     }
 
     .modal{
@@ -196,7 +199,7 @@
       inset:0;
       background:#00000080;
       z-index:20;
-      padding:30px 15px
+      padding:30px 15px;
     }
 
     .modalBox{
@@ -204,15 +207,15 @@
       margin:60px auto;
       background:#fff;
       border-radius:22px;
-      padding:22px
+      padding:22px;
     }
 
     .modalBox h2{
-      margin-top:0
+      margin-top:0;
     }
 
     .close{
-      background:#ff4d4d
+      background:#ff4d4d;
     }
 
     .profile{
@@ -220,229 +223,274 @@
       background:#fff;
       border-radius:22px;
       padding:20px;
-      box-shadow:0 6px 18px #0000000d
+      box-shadow:0 6px 18px #0000000d;
     }
 
     .profileRow{
       padding:10px 0;
       border-bottom:1px solid #eee;
-      font-size:15px
+      font-size:15px;
     }
-  </style></head><body><div class="wrap">  <!-- HEADER -->  <section class="hero"><div class="brand">🎃 SMEarnBDbot</div>
+  </style>
+</head>
 
-<div class="sub">
-  আয় করুন সহজে
-</div>
+<body>
 
-<div class="balance">
+<div class="wrap">
 
-  <div class="label">
-    আপনার ব্যালেন্স
+  <!-- HEADER -->
+  <section class="hero">
+
+    <div class="brand">
+      🎃 SMEarnBDbot
+    </div>
+
+    <div class="sub">
+      আয় করুন সহজে
+    </div>
+
+    <div class="balance">
+
+      <div class="label">
+        আপনার ব্যালেন্স
+      </div>
+
+      <div class="money" id="balance">
+        ৳ 0.00
+      </div>
+
+      <div class="welcome">
+        স্বাগতম, <span id="name">User</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- RULE -->
+  <div class="rule" onclick="openRules()">
+
+    📖 কাজ করার নিয়ম
+
+    <small>
+      নতুন ইউজার? এখানে ক্লিক করে নিয়মগুলো দেখুন
+    </small>
+
   </div>
 
-  <div class="money" id="balance">
-    ৳ 0.00
+
+  <!-- REFERRAL -->
+  <div class="ref">
+
+    <div class="title">
+      🔗 আপনার Referral Link
+    </div>
+
+    <div class="refLink" id="refLink">
+      Referral Link তৈরি হচ্ছে...
+    </div>
+
+    <button class="action" onclick="copyRef()">
+      📋 লিংক কপি করুন
+    </button>
+
+    <button class="action orange" onclick="shareRef()">
+      📤 বন্ধুদের শেয়ার করুন
+    </button>
+
+    <div class="muted" style="margin-top:9px">
+      Referral bonus ও নিয়ম Admin Panel থেকে নির্ধারণ করা যাবে।
+    </div>
+
   </div>
 
-  <div class="welcome">
-    স্বাগতম, <span id="name">User</span>
+
+  <!-- STATISTICS -->
+  <div class="grid">
+
+    <div class="card">
+
+      <div class="icon">
+        👁️
+      </div>
+
+      <div class="title">
+        এই ঘণ্টায় অ্যাড
+      </div>
+
+      <div class="value">
+        <span id="ads">0</span>/10
+      </div>
+
+      <div class="muted">
+        ডেমো মোড
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">
+        👥
+      </div>
+
+      <div class="title">
+        রেফারেল
+      </div>
+
+      <div class="value">
+        <span id="refs">0</span>
+      </div>
+
+      <div class="muted">
+        বন্ধু আমন্ত্রণ
+      </div>
+
+    </div>
+
   </div>
 
-</div>
 
-  </section>  <!-- RULE -->  <div class="rule" onclick="openRules()">📖 কাজ করার নিয়ম
+  <!-- AD BUTTON -->
+  <button class="action" onclick="demoAd()">
+    📺 ডেমো অ্যাড দেখুন
+  </button>
 
-<small>
-  নতুন ইউজার? এখানে ক্লিক করে নিয়মগুলো দেখুন
-</small>
 
-  </div>  <!-- REFERRAL -->  <div class="ref"><div class="title">
-  🔗 আপনার Referral Link
-</div>
+  <!-- WITHDRAW -->
+  <button class="action blue" onclick="withdraw()">
+    💳 Withdraw
+  </button>
 
-<div class="refLink" id="refLink">
-  Referral Link তৈরি হচ্ছে...
-</div>
 
-<button
-  class="action"
-  onclick="copyRef()">
-  📋 লিংক কপি করুন
-</button>
+  <!-- PROFILE -->
+  <div class="profile">
 
-<button
-  class="action orange"
-  onclick="shareRef()">
-  📤 বন্ধুদের শেয়ার করুন
-</button>
+    <div class="title">
+      👤 আমার প্রোফাইল
+    </div>
 
-<div
-  class="muted"
-  style="margin-top:9px">
-  Referral bonus ও নিয়ম Admin Panel থেকে নির্ধারণ করা যাবে।
-</div>
+    <div class="profileRow">
+      নাম:
+      <strong id="profileName">User</strong>
+    </div>
 
-  </div>  <!-- STATISTICS -->  <div class="grid"><div class="card">
+    <div class="profileRow">
+      Telegram ID:
+      <strong id="userId">Demo</strong>
+    </div>
 
-  <div class="icon">
-    👁️
+    <div class="profileRow">
+      Referral:
+      <strong>
+        <span id="profileRefs">0</span> জন
+      </strong>
+    </div>
+
   </div>
 
-  <div class="title">
-    এই ঘণ্টায় অ্যাড
-  </div>
 
-  <div class="value">
-    <span id="ads">0</span>/10
-  </div>
-
-  <div class="muted">
-    ডেমো মোড
-  </div>
-
-</div>
-
-
-<div class="card">
-
-  <div class="icon">
-    👥
-  </div>
-
-  <div class="title">
-    রেফারেল
-  </div>
-
-  <div class="value">
-    <span id="refs">0</span>
-  </div>
-
-  <div class="muted">
-    বন্ধু আমন্ত্রণ
-  </div>
-
-</div>
-
-  </div>  <!-- AD BUTTON --><button
-class="action"
-onclick="demoAd()">
-📺 ডেমো অ্যাড দেখুন
-</button>
-
-  <!-- WITHDRAW --><button
-class="action blue"
-onclick="withdraw()">
-💳 Withdraw
-</button>
-
-  <!-- PROFILE -->  <div class="profile"><div class="title">
-  👤 আমার প্রোফাইল
-</div>
-
-<div class="profileRow">
-  নাম:
-  <strong id="profileName">
-    User
-  </strong>
-</div>
-
-<div class="profileRow">
-  Telegram ID:
-  <strong id="userId">
-    Demo
-  </strong>
-</div>
-
-<div class="profileRow">
-  Referral:
-  <strong>
-    <span id="profileRefs">0</span> জন
-  </strong>
-</div>
-
-  </div>  <div class="demo">
+  <div class="demo">
     SMEarnBDbot Step 2 Prototype
-  </div></div><!-- BOTTOM NAV --><nav class="nav"><button
-class="active"
-onclick="home()">
+  </div>
 
-<span>🏠</span>
-হোম
+</div>
 
-  </button><button
-onclick="tasks()">
 
-<span>☷</span>
-টাস্ক
+<!-- BOTTOM NAV -->
+<nav class="nav">
 
-  </button><button
-onclick="withdraw()">
+  <button class="active" onclick="home()">
+    <span>🏠</span>
+    হোম
+  </button>
 
-<span>💳</span>
-উইথড্র
+  <button onclick="tasks()">
+    <span>☷</span>
+    টাস্ক
+  </button>
 
-  </button><button
-onclick="profile()">
+  <button onclick="withdraw()">
+    <span>💳</span>
+    উইথড্র
+  </button>
 
-<span>👤</span>
-প্রোফাইল
+  <button onclick="profile()">
+    <span>👤</span>
+    প্রোফাইল
+  </button>
 
-  </button></nav><!-- RULE MODAL --><div
-  class="modal"
-  id="rulesModal">  <div class="modalBox"><h2>
-  📖 SMEarnBDbot-এর নিয়ম
-</h2>
+</nav>
 
-<p>
-  ১. Telegram অ্যাকাউন্ট দিয়ে Bot ব্যবহার করতে হবে।
-</p>
 
-<p>
-  ২. Referral Link ব্যবহার করে বন্ধুদের আমন্ত্রণ করা যাবে।
-</p>
+<!-- RULE MODAL -->
+<div class="modal" id="rulesModal">
 
-<p>
-  ৩. একই ব্যক্তি একাধিক অ্যাকাউন্ট ব্যবহার করে Referral সুবিধা নেওয়ার চেষ্টা করলে তা বাতিল হতে পারে।
-</p>
+  <div class="modalBox">
 
-<p>
-  ৪. বিজ্ঞাপন/টাস্ক সম্পন্ন করার তথ্য server থেকে যাচাই করা হবে।
-</p>
+    <h2>
+      📖 SMEarnBDbot-এর নিয়ম
+    </h2>
 
-<p>
-  ৫. Withdraw করার আগে প্রয়োজনীয় শর্ত পূরণ করতে হবে।
-</p>
+    <p>
+      ১. Telegram অ্যাকাউন্ট দিয়ে Bot ব্যবহার করতে হবে।
+    </p>
 
-<button
-  class="action close"
-  onclick="closeRules()">
-  বন্ধ করুন
-</button>
+    <p>
+      ২. Referral Link ব্যবহার করে বন্ধুদের আমন্ত্রণ করা যাবে।
+    </p>
 
-  </div></div><script>
+    <p>
+      ৩. একই ব্যক্তি একাধিক অ্যাকাউন্ট ব্যবহার করে Referral সুবিধা নেওয়ার চেষ্টা করলে তা বাতিল হতে পারে।
+    </p>
 
-  /* TELEGRAM */
+    <p>
+      ৪. বিজ্ঞাপন/টাস্ক সম্পন্ন করার তথ্য server থেকে যাচাই করা হবে।
+    </p>
 
-  const tg = window.Telegram?.WebApp;
+    <p>
+      ৫. Withdraw করার আগে প্রয়োজনীয় শর্ত পূরণ করতে হবে।
+    </p>
+
+    <button class="action close" onclick="closeRules()">
+      বন্ধ করুন
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  /* =========================
+     TELEGRAM WEB APP
+  ========================= */
+
+  const tg = window.Telegram?.WebApp || null;
 
   if (tg) {
-
     tg.ready();
     tg.expand();
-
   }
 
 
-  /* USER INFORMATION */
+  /* =========================
+     USER INFORMATION
+  ========================= */
 
   const tgUser =
-    window.Telegram?.WebApp?.initDataUnsafe?.user;
+    tg?.initDataUnsafe?.user || null;
 
   const userName =
     tgUser?.first_name || "User";
 
   const userId =
-    tgUser?.id ? String(tgUser.id) : "Demo";
+    tgUser?.id
+      ? String(tgUser.id)
+      : "Demo";
 
 
   document.getElementById("name").textContent =
@@ -455,13 +503,32 @@ onclick="profile()">
     userId;
 
 
-  /* REFERRAL LINK */
+  /* =========================
+     REFERRAL SYSTEM
+  ========================= */
 
   const botUsername =
     "SMEarnBDbot";
 
+
+  /*
+    Telegram Mini App-এর start parameter
+    এখানে পাওয়া যাবে।
+  */
+
+  const startParam =
+    tg?.initDataUnsafe?.start_param || "";
+
+
+  /*
+    নিজের Referral Link
+  */
+
   const referralId =
-    tgUser?.id ? String(tgUser.id) : "demo";
+    tgUser?.id
+      ? String(tgUser.id)
+      : "demo";
+
 
   const refLink =
     "https://t.me/" +
@@ -474,15 +541,59 @@ onclick="profile()">
     refLink;
 
 
-  /* COPY REFERRAL */
+  /*
+    যে ইউজারের Referral Link দিয়ে
+    এই Mini App খোলা হয়েছে
+  */
+
+  if (startParam) {
+
+    localStorage.setItem(
+      "referrer",
+      startParam
+    );
+
+  }
+
+
+  /* =========================
+     REFERRAL COUNT
+  ========================= */
+
+  /*
+    এখন Demo Mode।
+    আসল Referral Count পরে
+    server/database থেকে আসবে।
+  */
+
+  let referralCount =
+    Number(
+      localStorage.getItem("referralCount") || 0
+    );
+
+
+  document.getElementById("refs").textContent =
+    referralCount;
+
+  document.getElementById("profileRefs").textContent =
+    referralCount;
+
+
+  /* =========================
+     COPY REFERRAL LINK
+  ========================= */
 
   async function copyRef() {
 
     try {
 
-      await navigator.clipboard.writeText(refLink);
+      await navigator.clipboard.writeText(
+        refLink
+      );
 
-      alert("✅ Referral link কপি হয়েছে।");
+      alert(
+        "✅ Referral link কপি হয়েছে।"
+      );
 
     } catch (error) {
 
@@ -493,7 +604,9 @@ onclick="profile()">
   }
 
 
-  /* SHARE REFERRAL */
+  /* =========================
+     SHARE REFERRAL LINK
+  ========================= */
 
   function shareRef() {
 
@@ -503,7 +616,10 @@ onclick="profile()">
       );
 
     const url =
-      encodeURIComponent(refLink);
+      encodeURIComponent(
+        refLink
+      );
+
 
     const shareUrl =
       "https://t.me/share/url?url=" +
@@ -511,9 +627,12 @@ onclick="profile()">
       "&text=" +
       text;
 
+
     if (tg) {
 
-      tg.openTelegramLink(shareUrl);
+      tg.openTelegramLink(
+        shareUrl
+      );
 
     } else {
 
@@ -527,7 +646,9 @@ onclick="profile()">
   }
 
 
-  /* DEMO ADS */
+  /* =========================
+     DEMO ADS
+  ========================= */
 
   let ads =
     Number(
@@ -551,15 +672,19 @@ onclick="profile()">
 
     }
 
+
     ads++;
+
 
     localStorage.setItem(
       "demoAds",
       ads
     );
 
+
     document.getElementById("ads").textContent =
       ads;
+
 
     alert(
       "✅ ডেমো অ্যাড সম্পন্ন হয়েছে।"
@@ -568,15 +693,20 @@ onclick="profile()">
   }
 
 
-  /* BALANCE */
+  /* =========================
+     BALANCE
+  ========================= */
 
   let balance = 0;
+
 
   document.getElementById("balance").textContent =
     "৳ " + balance.toFixed(2);
 
 
-  /* WITHDRAW */
+  /* =========================
+     WITHDRAW
+  ========================= */
 
   function withdraw() {
 
@@ -587,7 +717,9 @@ onclick="profile()">
   }
 
 
-  /* RULES */
+  /* =========================
+     RULES
+  ========================= */
 
   function openRules() {
 
@@ -607,13 +739,15 @@ onclick="profile()">
   }
 
 
-  /* NAVIGATION */
+  /* =========================
+     NAVIGATION
+  ========================= */
 
   function home() {
 
     window.scrollTo({
-      top:0,
-      behavior:"smooth"
+      top: 0,
+      behavior: "smooth"
     });
 
   }
@@ -633,43 +767,12 @@ onclick="profile()">
     document.querySelector(
       ".profile"
     ).scrollIntoView({
-      behavior:"smooth"
+      behavior: "smooth"
     });
 
   }
 
+</script>
 
-  /* REFERRAL COUNT */
-
-  /*
-    এখন এটি Demo = 0।
-    আসল Referral count server/database
-    থেকে আনতে হবে।
-  */
-
-  const tg = window.Telegram.WebApp;
-
-const params = new URLSearchParams(window.location.search);
-const referrer = params.get("ref");
-
-let referralCount = 0;
-
-if (referrer) {
-  localStorage.setItem("referrer", referrer);
-}
-
-document.getElementById("refs").textContent = referralCount;
-document.getElementById("profileRefs").textContent = referralCount;
-
-  document.getElementById(
-    "refs"
-  ).textContent =
-    referralCount;
-
-  document.getElementById(
-    "profileRefs"
-  ).textContent =
-    referralCount;
-
-</script></body>
+</body>
 </html>
