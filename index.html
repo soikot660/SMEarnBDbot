@@ -647,7 +647,19 @@ onclick="profile()">
     থেকে আনতে হবে।
   */
 
-  const referralCount = 0;
+  const tg = window.Telegram.WebApp;
+
+const params = new URLSearchParams(window.location.search);
+const referrer = params.get("ref");
+
+let referralCount = 0;
+
+if (referrer) {
+  localStorage.setItem("referrer", referrer);
+}
+
+document.getElementById("refs").textContent = referralCount;
+document.getElementById("profileRefs").textContent = referralCount;
 
   document.getElementById(
     "refs"
