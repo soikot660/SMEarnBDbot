@@ -1,773 +1,210 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>SMEarnBDbot</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SMEarnBDbot</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-  <style>
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      font-family:Arial,"Noto Sans Bengali",sans-serif;
-      background:#fff1d7;
-      color:#222;
-    }
-
-    .wrap{
-      max-width:680px;
-      margin:auto;
-      padding:16px;
-      padding-bottom:100px;
-    }
-
-    .hero{
-      background:linear-gradient(135deg,#ffad0a,#ff7a00);
-      color:#fff;
-      border-radius:30px;
-      padding:28px 22px;
-      box-shadow:0 8px 24px #0002;
-    }
-
-    h1{
-      margin:0;
-      font-size:32px;
-    }
-
-    .sub{
-      font-size:19px;
-      margin-top:10px;
-    }
-
-    .balance{
-      margin-top:24px;
-      background:#ffffff2b;
-      border-radius:24px;
-      padding:20px;
-    }
-
-    .label{
-      font-size:18px;
-    }
-
-    .money{
-      font-size:42px;
-      font-weight:800;
-      margin:6px 0 10px;
-    }
-
-    .welcome{
-      font-size:17px;
-    }
-
-    .card{
-      background:#fff;
-      border-radius:24px;
-      padding:20px;
-      margin-top:16px;
-      box-shadow:0 5px 18px #0001;
-    }
-
-    .green{
-      background:#24b83f;
-      color:#fff;
-    }
-
-    .title{
-      font-size:23px;
-      font-weight:800;
-    }
-
-    .small{
-      font-size:16px;
-      margin-top:8px;
-      line-height:1.5;
-    }
-
-    .ref{
-      background:#f4f4f4;
-      border-radius:16px;
-      padding:15px;
-      word-break:break-all;
-      margin-top:12px;
-    }
-
-    button{
-      border:0;
-      border-radius:18px;
-      padding:15px 18px;
-      font-size:18px;
-      font-weight:700;
-      width:100%;
-      margin-top:12px;
-      cursor:pointer;
-    }
-
-    .copy{
-      background:#16b85a;
-      color:#fff;
-    }
-
-    .info{
-      font-size:15px;
-      color:#666;
-      line-height:1.5;
-    }
-
-    .hidden{
-      display:none;
-    }
-
-    /* Pages */
-    .page{
-      display:none;
-    }
-
-    .page.active{
-      display:block;
-    }
-
-    /* Task */
-    .task{
-      background:#fff;
-      border-radius:20px;
-      padding:16px;
-      margin-top:14px;
-      box-shadow:0 4px 15px #0001;
-    }
-
-    .task-title{
-      font-size:19px;
-      font-weight:800;
-    }
-
-    .task-desc{
-      color:#666;
-      font-size:14px;
-      margin-top:6px;
-      line-height:1.5;
-    }
-
-    .reward{
-      color:#16a34a;
-      font-size:17px;
-      font-weight:bold;
-      margin-top:10px;
-    }
-
-    .task-btn{
-      background:#16b85a;
-      color:#fff;
-      margin-top:12px;
-    }
-
-    .task-btn.done{
-      background:#999;
-    }
-
-    .page-title{
-      font-size:27px;
-      font-weight:800;
-      margin:8px 0 15px;
-    }
-
-    .notice{
-      background:#fff7df;
-      border-radius:18px;
-      padding:15px;
-      margin-top:14px;
-      line-height:1.6;
-      color:#555;
-    }
-
-    /* Bottom navigation */
-    nav{
-      position:fixed;
-      left:50%;
-      transform:translateX(-50%);
-      bottom:10px;
-      width:min(648px,calc(100% - 20px));
-      background:#fff;
-      border-radius:22px;
-      padding:10px;
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:6px;
-      box-shadow:0 -4px 18px #0002;
-      z-index:10;
-    }
-
-    nav button{
-      background:transparent;
-      color:#555;
-      font-size:13px;
-      padding:8px 3px;
-      margin:0;
-    }
-
-    nav button.active{
-      color:#ff7a00;
-      font-weight:800;
-    }
-
-    .icon{
-      display:block;
-      font-size:24px;
-      margin-bottom:3px;
-    }
-  </style>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#fff1d7;
+ color:#333;
+}
+header{
+ background:linear-gradient(135deg,#ffad0a,#ff7a00);
+ color:white;
+ padding:25px 15px;
+ text-align:center;
+ border-radius:0 0 25px 25px;
+}
+header h1{margin:0;font-size:28px}
+header p{margin:8px 0 0}
+.container{max-width:500px;margin:auto;padding:15px}
+.card{
+ background:white;
+ padding:17px;
+ border-radius:16px;
+ margin-bottom:15px;
+ box-shadow:0 3px 12px #00000012;
+}
+.balance{
+ background:linear-gradient(135deg,#ffad0a,#ff7a00);
+ color:white;
+ text-align:center;
+}
+.balance h2{font-size:34px;margin:10px}
+.menu{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+}
+button{
+ border:0;
+ background:#ff8500;
+ color:white;
+ padding:13px;
+ border-radius:10px;
+ font-size:15px;
+ width:100%;
+ margin-top:8px;
+ font-weight:bold;
+}
+.menu button{height:65px}
+input{
+ width:100%;
+ padding:13px;
+ border:1px solid #ddd;
+ border-radius:9px;
+ margin-top:10px;
+ font-size:15px;
+}
+.hidden{display:none}
+h3{margin-top:0;color:#ed7900}
+footer{text-align:center;color:#888;padding:20px}
+</style>
 </head>
 
 <body>
 
-<div class="wrap">
-
-  <!-- HOME -->
-  <section id="homePage" class="page active">
-
-    <section class="hero">
-      <h1>🎃 SMEarnBDbot</h1>
-
-      <div class="sub">
-        আয় করুন সহজে
-      </div><a href="https://t.me/SMEarnBDbot"
-   target="_blank"
-   style="display:block;
-   background:#ffffff;
-   color:#ff7a00;
-   text-align:center;
-   text-decoration:none;
-   padding:15px;
-   margin-top:16px;
-   border-radius:18px;
-   font-size:18px;
-   font-weight:bold;">
-  🚀 Telegram Bot খুলুন
-</a>
-
-      <div class="balance">
-        <div class="label">
-          আপনার ব্যালেন্স
-        </div>
-
-        <div class="money">
-          ৳ <span id="balance">0.00</span>
-        </div>
-
-        <div class="welcome">
-          স্বাগতম, <span id="name">User</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="card green" onclick="showPage('tasksPage')">
-
-      <div class="title">
-        📋 কাজ করুন
-      </div>
-
-      <div class="small">
-        Task সম্পন্ন করে Demo Reward সংগ্রহ করুন
-      </div>
-
-    </section>
-
-    <section class="card">
-
-      <div class="title">
-        🔗 আপনার Referral Link
-      </div>
-
-      <div class="ref" id="refLink">
-        লোড হচ্ছে...
-      </div>
-
-      <button class="copy" onclick="copyReferral()">
-        📋 লিংক কপি করুন
-      </button>
-
-    </section>
-
-    <section class="card">
-
-      <div class="title">
-        👤 Telegram তথ্য
-      </div>
-
-      <p class="info">
-        নাম: <b id="fullName">User</b>
-      </p>
-
-      <p class="info">
-        Username: <b id="username">নেই</b>
-      </p>
-
-      <p class="info">
-        User ID: <b id="userId">নেই</b>
-      </p>
-
-      <p class="info">
-        Referral: <b id="startParam">নেই</b>
-      </p>
-
-    </section>
-
-  </section>
-
-
-  <!-- TASK PAGE -->
-  <section id="tasksPage" class="page">
-
-    <div class="page-title">
-      📋 Task
-    </div>
-
-    <div class="notice">
-      নিচের Task সম্পন্ন করলে Demo Reward যোগ হবে।
-      বাস্তব টাকা/Withdraw এখনো চালু করা হয়নি।
-    </div>
-
-
-    <!-- TASK 1 -->
-    <div class="task">
-
-      <div class="task-title">
-        🎯 Daily Check-in
-      </div>
-
-      <div class="task-desc">
-        প্রতিদিন একবার Check-in করুন।
-      </div>
-
-      <div class="reward">
-        Reward: ৳10
-      </div>
-
-      <button
-        id="task1Btn"
-        class="task-btn"
-        onclick="completeTask(1,10)">
-        ✅ Task Complete
-      </button>
-
-    </div>
-
-
-    <!-- TASK 2 -->
-    <div class="task">
-
-      <div class="task-title">
-        ⭐ Welcome Task
-      </div>
-
-      <div class="task-desc">
-        SMEarnBDbot-এর Task Section দেখুন।
-      </div>
-
-      <div class="reward">
-        Reward: ৳20
-      </div>
-
-      <button
-        id="task2Btn"
-        class="task-btn"
-        onclick="completeTask(2,20)">
-        ✅ Task Complete
-      </button>
-
-    </div>
-
-
-    <!-- TASK 3 -->
-    <div class="task">
-
-      <div class="task-title">
-        👥 Referral Task
-      </div>
-
-      <div class="task-desc">
-        আপনার Referral Link বন্ধুদের সাথে শেয়ার করুন।
-      </div>
-
-      <div class="reward">
-        Reward: ৳5
-      </div>
-
-      <button
-        id="task3Btn"
-        class="task-btn"
-        onclick="completeTask(3,5)">
-        🔗 Task Complete
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- REFERRAL PAGE -->
-  <section id="refPage" class="page">
-
-    <div class="page-title">
-      👥 Referral
-    </div>
-
-    <div class="card">
-
-      <div class="title">
-        আপনার Referral Link
-      </div>
-
-      <div class="ref" id="refLink2">
-        লোড হচ্ছে...
-      </div>
-
-      <button class="copy" onclick="copyReferral()">
-        📋 লিংক কপি করুন
-      </button>
-
-    </div>
-
-    <div class="notice">
-      আপনার Referral Link ব্যবহার করে নতুন ইউজার যুক্ত হলে
-      ভবিষ্যতে Referral Bonus ব্যবস্থা চালু করা যাবে।
-    </div>
-
-  </section>
-
-
-  <!-- WITHDRAW PAGE -->
-  <section id="withdrawPage" class="page">
-
-    <div class="page-title">
-      💳 Withdraw
-    </div>
-
-    <div class="card">
-
-      <div class="title">
-        বর্তমান ব্যালেন্স
-      </div>
-
-      <div class="money">
-        ৳ <span id="withdrawBalance">0.00</span>
-      </div>
-
-      <div class="notice">
-        Withdraw system এখনো সংযুক্ত করা হয়নি।
-        পরের ধাপে নিরাপদ Backend ও Payment system যুক্ত করা হবে।
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- BOTTOM NAV -->
-  <nav>
-
-    <button id="navHome" class="active"
-      onclick="showPage('homePage')">
-      <span class="icon">🏠</span>
-      হোম
-    </button>
-
-    <button id="navTask"
-      onclick="showPage('tasksPage')">
-      <span class="icon">☷</span>
-      টাস্ক
-    </button>
-
-    <button id="navRef"
-      onclick="showPage('refPage')">
-      <span class="icon">🔗</span>
-      রেফার
-    </button>
-
-    <button id="navWithdraw"
-      onclick="showPage('withdrawPage')">
-      <span class="icon">💳</span>
-      উইথড্র
-    </button>
-
-  </nav>
+<header>
+<h1>🟠 SMEarnBD</h1>
+<p>Telegram Earning Platform</p>
+</header>
+
+<div class="container">
+
+<div class="card balance">
+<p>💰 My Balance</p>
+<h2 id="balance">৳ 0.00</h2>
+<p>Available Balance</p>
+</div>
+
+<div class="card">
+<h3>👤 My Account</h3>
+<p id="username">Name: Loading...</p>
+<p id="userid">User ID: Loading...</p>
+</div>
+
+<div class="card">
+<h3>📱 Dashboard</h3>
+<div class="menu">
+<button onclick="showPage('home')">🏠 Home</button>
+<button onclick="showPage('tasks')">📋 Daily Tasks</button>
+<button onclick="showPage('referral')">👥 Referral</button>
+<button onclick="showPage('withdraw')">💸 Withdraw</button>
+<button onclick="showPage('profile')">👤 Profile</button>
+<button onclick="showPage('bonus')">🎁 Bonus</button>
+</div>
+</div>
+
+<div id="home" class="card">
+<h3>🏠 Welcome to SMEarnBD</h3>
+<p>SMEarnBDbot-এ আপনাকে স্বাগতম।</p>
+<p>আমাদের প্ল্যাটফর্মে কাজ করুন এবং বন্ধুদের Invite করুন।</p>
+</div>
+
+<div id="tasks" class="card hidden">
+<h3>📋 Daily Tasks</h3>
+<p>Daily Tasks এখানে দেখানো হবে।</p>
+<p>Tasks system এখনো সংযুক্ত করা হয়নি।</p>
+</div>
+
+<div id="referral" class="card hidden">
+<h3>👥 Referral System</h3>
+<p>আপনার Referral Link:</p>
+<input id="refLink" readonly>
+<button onclick="copyReferral()">📋 Copy Referral Link</button>
+<p>বন্ধুদের আপনার লিংক দিয়ে Invite করুন।</p>
+<p id="refStatus"></p>
+</div>
+
+<div id="withdraw" class="card hidden">
+<h3>💸 Withdraw</h3>
+<p>Withdrawal সুবিধা এখনো সংযুক্ত করা হয়নি।</p>
+<input id="amount" type="number" placeholder="Amount">
+<input id="payment" placeholder="বিকাশ / নগদ নম্বর">
+<button onclick="alert('Withdrawal system coming soon')">
+Withdraw Request
+</button>
+</div>
+
+<div id="profile" class="card hidden">
+<h3>👤 My Profile</h3>
+<p id="profileName">Name:</p>
+<p id="profileId">User ID:</p>
+</div>
+
+<div id="bonus" class="card hidden">
+<h3>🎁 Bonus</h3>
+<p>Bonus system শিগগিরই চালু হবে।</p>
+</div>
+
+<footer>
+SMEarnBD © 2026
+</footer>
 
 </div>
 
-
 <script>
-
-  /* Telegram */
-
-  const tg =
-    window.Telegram &&
-    window.Telegram.WebApp
-      ? window.Telegram.WebApp
-      : null;
-
-  if(tg){
-    tg.ready();
-    tg.expand();
-  }
-
-
-  /* User */
-
-  const user =
-    tg?.initDataUnsafe?.user || {};
-
-  const startParam =
-    tg?.initDataUnsafe?.start_param || "";
-
-  const userId =
-    user.id ? String(user.id) : "";
-
-  const first =
-    user.first_name || "";
-
-  const last =
-    user.last_name || "";
-
-  const fullName =
-    (first + " " + last).trim() || "User";
-
-  const username =
-    user.username
-      ? "@" + user.username
-      : "নেই";
-
-
-  /* Telegram information */
-
-  document.getElementById("name").textContent =
-    first || "User";
-
-  document.getElementById("fullName").textContent =
-    fullName;
-
-  document.getElementById("username").textContent =
-    username;
-
-  document.getElementById("userId").textContent =
-    userId || "Telegram থেকে খুলুন";
-
-  document.getElementById("startParam").textContent =
-    startParam || "নেই";
-
-
-  /* Referral */
-
-  const botUsername =
-    "SMEarnBDbot";
-
-  const referralCode =
-    userId || "demo";
-
-  const referralLink =
-    `https://t.me/${botUsername}?start=ref_${referralCode}`;
-
-  document.getElementById("refLink").textContent =
-    referralLink;
-
-  document.getElementById("refLink2").textContent =
-    referralLink;
-
-
-  /* Balance */
-
-  const balanceKey =
-    "smearn_balance_" + (userId || "demo");
-
-  let balance =
-    Number(localStorage.getItem(balanceKey) || 0);
-
-
-  function updateBalance(){
-
-    document.getElementById("balance").textContent =
-      balance.toFixed(2);
-
-    document.getElementById("withdrawBalance").textContent =
-      balance.toFixed(2);
-
-    localStorage.setItem(
-      balanceKey,
-      balance.toFixed(2)
-    );
-  }
-
-  updateBalance();
-
-
-  /* Page system */
-
-  function showPage(pageId){
-
-    document.querySelectorAll(".page")
-      .forEach(page => {
-        page.classList.remove("active");
-      });
-
-    document.getElementById(pageId)
-      .classList.add("active");
-
-
-    document.querySelectorAll("nav button")
-      .forEach(btn => {
-        btn.classList.remove("active");
-      });
-
-
-    if(pageId === "homePage"){
-      document.getElementById("navHome")
-        .classList.add("active");
-    }
-
-    if(pageId === "tasksPage"){
-      document.getElementById("navTask")
-        .classList.add("active");
-    }
-
-    if(pageId === "refPage"){
-      document.getElementById("navRef")
-        .classList.add("active");
-    }
-
-    if(pageId === "withdrawPage"){
-      document.getElementById("navWithdraw")
-        .classList.add("active");
-    }
-
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
-  }
-
-
-  /* Complete Task */
-
-  function completeTask(taskId,reward){
-
-    const taskKey =
-      "smearn_task_" +
-      taskId +
-      "_" +
-      (userId || "demo");
-
-
-    if(localStorage.getItem(taskKey) === "done"){
-
-      alert("এই Task ইতিমধ্যে সম্পন্ন হয়েছে।");
-
-      return;
-    }
-
-
-    balance += reward;
-
-    updateBalance();
-
-
-    localStorage.setItem(
-      taskKey,
-      "done"
-    );
-
-
-    const btn =
-      document.getElementById(
-        "task" + taskId + "Btn"
-      );
-
-
-    if(btn){
-
-      btn.textContent =
-        "✅ Completed";
-
-      btn.classList.add("done");
-
-      btn.disabled = true;
-    }
-
-
-    alert(
-      "Task সম্পন্ন হয়েছে! Demo Reward ৳" +
-      reward +
-      " যোগ হয়েছে।"
-    );
-  }
-
-
-  /* Restore completed tasks */
-
-  function restoreTasks(){
-
-    for(let i=1;i<=3;i++){
-
-      const taskKey =
-        "smearn_task_" +
-        i +
-        "_" +
-        (userId || "demo");
-
-
-      if(localStorage.getItem(taskKey) === "done"){
-
-        const btn =
-          document.getElementById(
-            "task" + i + "Btn"
-          );
-
-
-        if(btn){
-
-          btn.textContent =
-            "✅ Completed";
-
-          btn.classList.add("done");
-
-          btn.disabled = true;
-        }
-      }
-    }
-  }
-
-  restoreTasks();
-
-
-  /* Copy Referral */
-
-  function copyReferral(){
-
-    if(navigator.clipboard){
-
-      navigator.clipboard
-        .writeText(referralLink)
-        .then(() => {
-
-          alert(
-            "Referral link কপি হয়েছে ✅"
-          );
-
-        })
-        .catch(() => {
-
-          alert(referralLink);
-
-        });
-
-    }else{
-
-      alert(referralLink);
-
-    }
-  }
-
+const tg=window.Telegram.WebApp;
+tg.ready();
+tg.expand();
+
+const user=tg.initDataUnsafe?.user;
+
+if(user){
+ document.getElementById("username").innerText=
+ "Name: "+(user.first_name||"User");
+
+ document.getElementById("userid").innerText=
+ "User ID: "+user.id;
+
+ document.getElementById("profileName").innerText=
+ "Name: "+(user.first_name||"User");
+
+ document.getElementById("profileId").innerText=
+ "User ID: "+user.id;
+
+ document.getElementById("refLink").value=
+ "https://t.me/SMEarnBDbot?start=ref_"+user.id;
+}else{
+ document.getElementById("username").innerText="Name: Telegram User";
+ document.getElementById("userid").innerText="User ID: Not available";
+ document.getElementById("profileName").innerText="Name: Telegram User";
+ document.getElementById("profileId").innerText="User ID: Not available";
+ document.getElementById("refLink").value="Open from Telegram";
+}
+
+function showPage(page){
+ const pages=["home","tasks","referral","withdraw","profile","bonus"];
+ pages.forEach(id=>{
+  document.getElementById(id).classList.add("hidden");
+ });
+ document.getElementById(page).classList.remove("hidden");
+}
+
+function copyReferral(){
+ if(!user){
+  alert("Telegram থেকে Mini App খুলুন");
+  return;
+ }
+ const link=document.getElementById("refLink").value;
+
+ if(tg.isVersionAtLeast && tg.isVersionAtLeast("6.4")){
+  tg.clipboard.writeText(link,()=>{
+   alert("Referral Link Copied!");
+  });
+ }else{
+  navigator.clipboard.writeText(link)
+   .then(()=>alert("Referral Link Copied!"))
+   .catch(()=>alert("Copy করা যায়নি"));
+ }
+}
 </script>
 
 </body>
